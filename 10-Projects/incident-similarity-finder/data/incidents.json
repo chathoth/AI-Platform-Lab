@@ -1,0 +1,74 @@
+[
+  {
+    "id": "INC-1001",
+    "title": "checkout-service CrashLoopBackOff after deploy",
+    "description": "checkout-service pods entered CrashLoopBackOff within minutes of a routine deploy. kubectl logs --previous showed OOMKilled, exit code 137.",
+    "root_cause": "The new deploy bumped a background worker's batch size, increasing per-pod memory usage beyond the configured 512Mi limit.",
+    "resolution": "Rolled back to the previous deployment revision. Follow-up: raise the memory limit and add a memory usage alert before the next batch-size change.",
+    "service": "checkout-service",
+    "tags": ["oom", "crashloopbackoff", "deploy", "memory"]
+  },
+  {
+    "id": "INC-1002",
+    "title": "db-primary-02 disk usage critical, writes failing",
+    "description": "Alert fired for disk usage above 90% on db-primary-02. Application writes began failing with disk-full errors shortly after.",
+    "root_cause": "Old WAL (write-ahead log) segments were not being cleaned up after a replication lag issue earlier in the week, silently consuming disk space over several days.",
+    "resolution": "Manually archived and removed old WAL segments, freeing 40GB. Follow-up: alert on WAL segment count, not just raw disk percentage.",
+    "service": "db-primary-02",
+    "tags": ["disk", "database", "wal", "replication"]
+  },
+  {
+    "id": "INC-1003",
+    "title": "payment-api intermittent 500s, connection pool exhausted",
+    "description": "payment-api began returning 500 errors intermittently under normal traffic. Logs showed 'connection pool exhausted' from the database client.",
+    "root_cause": "A recently added reporting job opened long-lived database connections without releasing them, starving the shared connection pool.",
+    "resolution": "Killed the leaking reporting job's connections and added a connection timeout. Follow-up: move the reporting job to its own dedicated connection pool.",
+    "service": "payment-api",
+    "tags": ["connection-pool", "database", "500-errors", "timeout"]
+  },
+  {
+    "id": "INC-1004",
+    "title": "auth-service DNS resolution failures after node pool upgrade",
+    "description": "auth-service pods intermittently failed to resolve internal service DNS names right after a Kubernetes node pool upgrade.",
+    "root_cause": "The new node pool's kubelet was using a different CoreDNS configuration that hadn't propagated the internal search domain correctly.",
+    "resolution": "Restarted CoreDNS pods to force a config refresh. Follow-up: add a DNS resolution health check to the node pool upgrade runbook.",
+    "service": "auth-service",
+    "tags": ["dns", "kubernetes", "node-pool", "coredns"]
+  },
+  {
+    "id": "INC-1005",
+    "title": "api-gateway TLS certificate expired, all traffic returning 526",
+    "description": "External traffic to api-gateway began failing with 526 (invalid SSL certificate) errors at exactly midnight UTC.",
+    "root_cause": "The TLS certificate's auto-renewal job had been silently failing for three weeks due to an unrelated permissions change, and no alert existed for renewal failures.",
+    "resolution": "Manually renewed and deployed the certificate. Follow-up: alert explicitly on certificate expiry date, not just on renewal job success/failure.",
+    "service": "api-gateway",
+    "tags": ["tls", "certificate", "expiry", "renewal"]
+  },
+  {
+    "id": "INC-1006",
+    "title": "worker-queue memory usage climbing steadily over 6 hours before OOM",
+    "description": "worker-queue pods showed a slow, steady memory increase over about 6 hours, eventually hitting their memory limit and getting OOMKilled.",
+    "root_cause": "A recently introduced caching layer in the worker was never evicting old entries, causing an unbounded memory leak under sustained load.",
+    "resolution": "Rolled back the caching change and added a TTL-based eviction policy before re-deploying. Follow-up: add a memory-growth-rate alert, not just an absolute threshold.",
+    "service": "worker-queue",
+    "tags": ["memory-leak", "oom", "cache", "worker"]
+  },
+  {
+    "id": "INC-1007",
+    "title": "checkout-service returning 500s, unrelated to the OOM incident",
+    "description": "checkout-service returned elevated 500 errors for about 15 minutes. No recent deploy, no OOM kills observed in this window.",
+    "root_cause": "A downstream inventory-service experienced a brief network partition, and checkout-service had no timeout configured on that call, so requests piled up.",
+    "resolution": "Added a request timeout and circuit breaker on the inventory-service client. Follow-up: audit other services for missing timeouts on downstream calls.",
+    "service": "checkout-service",
+    "tags": ["timeout", "network-partition", "circuit-breaker", "500-errors"]
+  },
+  {
+    "id": "INC-1008",
+    "title": "db-replica-01 disk usage high but not yet critical",
+    "description": "Disk usage on db-replica-01 reached 78% and is trending upward, similar to the pattern seen before the db-primary-02 incident.",
+    "root_cause": "Under investigation - replication lag has been intermittently spiking, which may be causing similar WAL segment buildup as INC-1002.",
+    "resolution": "Proactively archiving old WAL segments and monitoring replication lag closely. Follow-up: apply INC-1002's WAL-segment-count alert to all replicas, not just primaries.",
+    "service": "db-replica-01",
+    "tags": ["disk", "database", "wal", "replication"]
+  }
+]

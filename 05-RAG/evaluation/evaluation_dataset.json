@@ -1,0 +1,137 @@
+[
+  {
+    "id": "Q01",
+    "question": "What is the typical initial vacation entitlement for a new employee?",
+    "expected_answer": "The initial entitlement is stated in the employment contract and is typically 15 days, prorated based on the start date.",
+    "expected_pages": "1,6",
+    "answerable": "true",
+    "category": "entitlement",
+    "keywords": "15 days; employment contract; prorated"
+  },
+  {
+    "id": "Q02",
+    "question": "What is the maximum vacation entitlement per calendar year?",
+    "expected_answer": "An employee's vacation entitlement cannot exceed 30 days per calendar year.",
+    "expected_pages": "1,6",
+    "answerable": "true",
+    "category": "entitlement",
+    "keywords": "30 days; maximum"
+  },
+  {
+    "id": "Q03",
+    "question": "How many vacation days may normally be carried over?",
+    "expected_answer": "Up to five vacation days may normally be carried over when the required conditions and approval are met.",
+    "expected_pages": "1",
+    "answerable": "true",
+    "category": "carry-over",
+    "keywords": "five days; carry-over"
+  },
+  {
+    "id": "Q04",
+    "question": "When must a carry-over request be submitted?",
+    "expected_answer": "The written request must be submitted to the department head or designate no later than November 1 of the accrual period.",
+    "expected_pages": "2",
+    "answerable": "true",
+    "category": "carry-over",
+    "keywords": "November 1; written request"
+  },
+  {
+    "id": "Q05",
+    "question": "Can an employee carry over more than five vacation days?",
+    "expected_answer": "Yes, but only in exceptional circumstances related to operational requirements and with written approval from the appropriate department head.",
+    "expected_pages": "2",
+    "answerable": "true",
+    "category": "carry-over",
+    "keywords": "exceptional circumstances; operational requirements; written approval"
+  },
+  {
+    "id": "Q06",
+    "question": "Do employees continue to accrue vacation during maternity and parental leave?",
+    "expected_answer": "Yes. Employees continue to accrue vacation during maternity and parental leave.",
+    "expected_pages": "2",
+    "answerable": "true",
+    "category": "leave-of-absence",
+    "keywords": "continue to accrue; maternity; parental"
+  },
+  {
+    "id": "Q07",
+    "question": "What happens if an employee is hospitalized for five or more days during vacation?",
+    "expected_answer": "Sick leave may be substituted for vacation when the serious illness or accident requires hospitalization or confinement to bed for five or more days and is supported by substantiated medical documentation.",
+    "expected_pages": "2",
+    "answerable": "true",
+    "category": "leave-of-absence",
+    "keywords": "sick leave; substituted; five days; medical documentation"
+  },
+  {
+    "id": "Q08",
+    "question": "How is vacation entitlement affected by an unpaid leave longer than one month?",
+    "expected_answer": "Vacation entitlement is prorated for the period actually worked, except that this rule does not apply to maternity or parental leave.",
+    "expected_pages": "2",
+    "answerable": "true",
+    "category": "leave-of-absence",
+    "keywords": "prorated; period worked; unpaid leave"
+  },
+  {
+    "id": "Q09",
+    "question": "How is vacation payout calculated when an employee terminates employment?",
+    "expected_answer": "The payout is prorated based on service in that year and reduced by vacation already used up to the prorated entitlement.",
+    "expected_pages": "3",
+    "answerable": "true",
+    "category": "termination",
+    "keywords": "prorated; service; reduced; vacation used"
+  },
+  {
+    "id": "Q10",
+    "question": "What is the accrual period?",
+    "expected_answer": "The accrual period is January 1 through December 31 of each year.",
+    "expected_pages": "3",
+    "answerable": "true",
+    "category": "definition",
+    "keywords": "January 1; December 31"
+  },
+  {
+    "id": "Q11",
+    "question": "Who approves requests to carry over vacation?",
+    "expected_answer": "The department head or designate approves carry-over requests in accordance with departmental guidelines, applicable collective agreements, and the procedures.",
+    "expected_pages": "1,4",
+    "answerable": "true",
+    "category": "responsibility",
+    "keywords": "department head; designate; approve"
+  },
+  {
+    "id": "Q12",
+    "question": "Can a department head approve their own carry-over request?",
+    "expected_answer": "No. Department heads or designates must submit their own carry-over requests to their supervisor and cannot approve their own requests.",
+    "expected_pages": "4",
+    "answerable": "true",
+    "category": "responsibility",
+    "keywords": "cannot approve their own; supervisor"
+  },
+  {
+    "id": "Q13",
+    "question": "How many sick days are employees entitled to?",
+    "expected_answer": "I could not find enough information in the provided documents.",
+    "expected_pages": "",
+    "answerable": "false",
+    "category": "negative",
+    "keywords": ""
+  },
+  {
+    "id": "Q14",
+    "question": "What dental benefits are provided?",
+    "expected_answer": "I could not find enough information in the provided documents.",
+    "expected_pages": "",
+    "answerable": "false",
+    "category": "negative",
+    "keywords": ""
+  },
+  {
+    "id": "Q15",
+    "question": "What is the overtime compensation policy?",
+    "expected_answer": "I could not find enough information in the provided documents.",
+    "expected_pages": "",
+    "answerable": "false",
+    "category": "negative",
+    "keywords": ""
+  }
+]
